@@ -5,6 +5,21 @@
         <title>Table Sort Background</title> 
     </head>
     <body>
-    	<script src="settings.js"></script>
+    	<script>
+
+chrome.browserAction.onClicked.addListener(function(tab) {
+
+  chrome.storage.sync.get({
+    sortingActive: true
+  }, function(items) {
+    items.sortingActive = !items.sortingActive;
+    if (items.sortingActive) {
+      console.log('table sort activated');
+    }
+  });
+
+});
+
+			</script>
 		</body>
 </html>

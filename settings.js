@@ -1,11 +1,12 @@
-function toggle_script() {
-  chrome.storage.sync.get({
-    sortingActive: true
-  }, function(items) {
-		items.sortingActive = !items.sortingActive;
-		if (items.sortingActive) {
-			console.log('table sort activated');
-		}
-  });
-}
-chrome.browserAction.onClicked.addListener(toggle_script.call());
+chrome.storage.local.get('OpVal', function (result0) {
+	if (result0.OpVal == true) {
+		chrome.storage.local.set({'OpVal': false}, function (result1) {
+  	});
+	}
+	else {
+  	chrome.storage.local.set({'OpVal': true}, function (result1) {
+			alert('Table Sort Enabled');
+  	});
+	}
+});
+

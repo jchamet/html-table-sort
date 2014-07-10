@@ -7,13 +7,13 @@
     "default_icon": "icon.png"
   },
 	"permissions": [
-  	"activeTab"
+  	"activeTab",
+		"debugger",
+		"tabs",
+		"storage"
 	],
-	"background": { 
-		"page": "toggle.html"
-	},
-	"content_scripts" : [{
-		"matches": ["<all_urls>"],
-		"js" : ["settings.js", "table-sort.js"]
-	}]
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  }
 }
