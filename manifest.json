@@ -1,0 +1,19 @@
+{
+  "name": "Chrome Table Sort",
+  "version": "1.0",
+	"manifest_version" : 2,
+  "description": "Clicking on a table column header <th> will reorder the rows of an HTML table in ascending/descending order.",
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+	"permissions": [
+  	"activeTab"
+	],
+	"background": { 
+		"page": "toggle.html"
+	},
+	"content_scripts" : [{
+		"matches": ["<all_urls>"],
+		"js" : ["settings.js", "table-sort.js"]
+	}]
+}
