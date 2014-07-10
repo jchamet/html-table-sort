@@ -5,7 +5,6 @@ chrome.storage.local.get('OpVal', function (result0) {
 	}
 	else {
   	chrome.storage.local.set({'OpVal': true}, function (result1) {
-			alert('Table Sort Enabled');
   	});
 	}
 });

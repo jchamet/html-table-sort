@@ -21,11 +21,4 @@ function getCellValue(row, index){ return $(row).children('td').eq(index).html()
 
 });
 
-chrome.storage.local.get('OpVal', function (result0) {
-  if (result0.OpVal == false) {
-  	loadAndExecute("//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js", function() {
-  		$('th').unbind('click');
-		});
-  }
-});
 
