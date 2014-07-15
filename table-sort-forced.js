@@ -9,8 +9,7 @@ document.querySelector('th').onclick = function() {
       console.log("Failed to find nesting table");
     }
     else {
-      debugger
-      var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
+      var rows = table.find('tr:gt(0)').toArray().sort(comparer(this.rowIndex))
       this.asc = !this.asc
       if (!this.asc){rows = rows.reverse()}
       for (var i = 0; i < rows.length; i++){table.append(rows[i])}

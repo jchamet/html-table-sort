@@ -16,10 +16,6 @@
 		"tabs",
 		"storage"
 	],
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
 	"content_scripts" : [{
 		"matches": ["<all_urls>"],
 		"js" : ["table-sort-forced.js"]
