@@ -10,36 +10,32 @@ document.querySelector('th').onclick = function() {
       console.log("Failed to find nesting table");
     }
     else {
-      var rows = myTable.querySelectorAll('tr')
+      var index = [].indexOf.call(this.parentNode.children, this);
 
-      debugger
-var array = $.map(myObj, function(value, index) {
-    return [value];
-});
+      var rows = myTable.querySelectorAll('tr');
+      var nodeList = rows, nodeArray = [].slice.call(nodeList);
+      nodeArray.splice(0,1);
 
-/*
-      var rows = myTable.find('tr:gt(0)').toArray().sort(comparer(this.rowIndex))
-      this.asc = !this.asc
-      if (!this.asc){rows = rows.reverse()}
-      for (var i = 0; i < rows.length; i++){
-        myTable.append(rows[i])
+      nodeArray.sort(function(a, b) {
+        return a.innerHTML == b.innerHTML
+          ? 0
+          : (a.innerHTML > b.innerHTML ? 1 : -1);
+      });
+
+      tableObj = findParentNode('TABLE',this);
+
+      for (i = 0; i < nodeArray.length; ++i) {
+        tableObj.appendChild(nodeArray[i]);
       }
-*/
+
   }
 }
 
-function isNumber(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n);
-}
-
-function comparer(index) {
-    return function(a, b) {
-        var valA = getCellValue(a, index), valB = getCellValue(b, index)
-        return isNumber(valA) && isNumber(valB) ? valA - valB : valA.localeCompare(valB)
+function findParentNode(parentName, childObj) {
+    var testObj = childObj.parentNode;
+    while(testObj.tagName != parentName) {
+        testObj = testObj.parentNode;
     }
-}
-
-function getCellValue(row, index) { 
-  return $(row).children('td').eq(index).html() 
+    return testObj;
 }
 
