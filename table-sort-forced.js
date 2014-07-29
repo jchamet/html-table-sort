@@ -1,5 +1,9 @@
 
-document.querySelector('th').onclick = function() {
+var tableHeaders = document.querySelectorAll('th');
+var sortAsc = true;
+
+for (j = 0; j < tableHeaders.length; ++j) {
+  tableHeaders.item(j).onclick = function() {
     counter = 0;
     myTable = this.parentElement;
     while (myTable.tagName != "TABLE" || counter > 10) {
@@ -17,25 +21,29 @@ document.querySelector('th').onclick = function() {
       nodeArray.splice(0,1);
 
       nodeArray.sort(function(a, b) {
-        return a.innerHTML == b.innerHTML
+        a = a.querySelectorAll('td').item(index);
+        b = b.querySelectorAll('td').item(index);
+        return a.innerHTML == b.innerHTML && sortAsc
           ? 0
           : (a.innerHTML > b.innerHTML ? 1 : -1);
       });
+
+      sortAsc = !sortAsc;
 
       tableObj = findParentNode('TABLE',this);
 
       for (i = 0; i < nodeArray.length; ++i) {
         tableObj.appendChild(nodeArray[i]);
       }
-
+    }
   }
 }
 
 function findParentNode(parentName, childObj) {
-    var testObj = childObj.parentNode;
-    while(testObj.tagName != parentName) {
-        testObj = testObj.parentNode;
-    }
-    return testObj;
+  var testObj = childObj.parentNode;
+  while(testObj.tagName != parentName) {
+    testObj = testObj.parentNode;
+  }
+  return testObj;
 }
 
