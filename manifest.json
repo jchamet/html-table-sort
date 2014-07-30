@@ -4,9 +4,9 @@
     "32": "icon.png",
     "128":  "icon-large.png"
   },
-  "version": "1.1",
+  "version": "1.2",
 	"manifest_version" : 2,
-  "description": "Clicking on a table column header <th> will reorder the rows of an HTML table in ascending/descending order.",
+  "description": "Onclick <th>, reorders rows of an HTML table in ascending/descending order.",
   "browser_action": {
     "default_icon": "icon.png"
   },
@@ -18,6 +18,6 @@
 	],
 	"content_scripts" : [{
 		"matches": ["<all_urls>"],
-		"js" : ["table-sort-forced.js"]
+		"js" : ["table-sort.js"]
 	}]
 }
