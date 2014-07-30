@@ -20,21 +20,30 @@ for (j = 0; j < tableHeaders.length; ++j) {
       var nodeList = rows, nodeArray = [].slice.call(nodeList);
       nodeArray.splice(0,1);
 
+      debugger
+
       nodeArray.sort(function(a, b) {
         a = a.querySelectorAll('td').item(index);
         b = b.querySelectorAll('td').item(index);
-        return a.innerHTML == b.innerHTML && sortAsc
+        return a.innerHTML == b.innerHTML
           ? 0
           : (a.innerHTML > b.innerHTML ? 1 : -1);
       });
 
-      sortAsc = !sortAsc;
 
       tableObj = findParentNode('TABLE',this);
 
-      for (i = 0; i < nodeArray.length; ++i) {
-        tableObj.appendChild(nodeArray[i]);
+      if (sortAsc) {
+        for (i = 0; i < nodeArray.length; ++i) {
+          tableObj.appendChild(nodeArray[i]);
+        }
       }
+      else {
+        for (i = nodeArray.length -1; i > -1; --i) {
+          tableObj.appendChild(nodeArray[i]);
+        }
+      }
+      sortAsc = !sortAsc;
     }
   }
 }
