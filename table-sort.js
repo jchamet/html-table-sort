@@ -11,7 +11,10 @@ for (j = 0; j < tableHeaders.length; ++j) {
     var nodeList = tableObj.querySelectorAll('tr');
     var nodeArray = [].slice.call(nodeList);
 
-    // TODO: Fix this to remove titles AND headers, right now it removes first row which is not... correct, maybe a fix is to iremove while first node has a nested <th> tag
+    // Remove from selection up to and including clicked TR
+    while (nodeArray[0] != findParentNode('TR',this)){
+      nodeArray.splice(0,1);
+    }
     nodeArray.splice(0,1);
 
     nodeArray.sort(function(a, b) {
