@@ -4,7 +4,7 @@
     "32": "icon.png",
     "128":  "icon-large.png"
   },
-  "version": "1.0",
+  "version": "1.1",
 	"manifest_version" : 2,
   "description": "Clicking on a table column header <th> will reorder the rows of an HTML table in ascending/descending order.",
   "browser_action": {

@@ -1,6 +1,7 @@
 
 var tableHeaders = document.querySelectorAll('th');
 var sortAsc = true;
+var sortEnabled = true;
 
 for (j = 0; j < tableHeaders.length; ++j) {
   tableHeaders.item(j).onclick = function() {
@@ -18,9 +19,9 @@ for (j = 0; j < tableHeaders.length; ++j) {
 
       var rows = myTable.querySelectorAll('tr');
       var nodeList = rows, nodeArray = [].slice.call(nodeList);
-      nodeArray.splice(0,1);
 
-      debugger
+      // TODO: Fix this to remove titles AND headers, right now it removes first row which is not... correct, maybe a fix is to iremove while first node has a nested <th> tag
+      nodeArray.splice(0,1);
 
       nodeArray.sort(function(a, b) {
         a = a.querySelectorAll('td').item(index);
@@ -30,20 +31,21 @@ for (j = 0; j < tableHeaders.length; ++j) {
           : (a.innerHTML > b.innerHTML ? 1 : -1);
       });
 
-
       tableObj = findParentNode('TABLE',this);
 
-      if (sortAsc) {
-        for (i = 0; i < nodeArray.length; ++i) {
-          tableObj.appendChild(nodeArray[i]);
+      if (sortEnabled) {
+        if (sortAsc) {
+          for (i = 0; i < nodeArray.length; ++i) {
+            tableObj.appendChild(nodeArray[i]);
+          }
         }
-      }
-      else {
-        for (i = nodeArray.length -1; i > -1; --i) {
-          tableObj.appendChild(nodeArray[i]);
+        else {
+          for (i = nodeArray.length -1; i > -1; --i) {
+            tableObj.appendChild(nodeArray[i]);
+          }
         }
+        sortAsc = !sortAsc;
       }
-      sortAsc = !sortAsc;
     }
   }
 }
