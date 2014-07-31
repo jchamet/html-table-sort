@@ -1,12 +1,12 @@
 {
-  "name": "Chrome Table Sort",
+  "name": "HTML Table Auto Sort",
   "icons": {
     "32": "icon.png",
     "128":  "icon-large.png"
   },
   "version": "1.2",
 	"manifest_version" : 2,
-  "description": "Onclick <th>, reorders rows of an HTML table in ascending/descending order.",
+  "description": "Clicking on <th> tags reorders rows of an HTML table in ascending/descending order.",
   "browser_action": {
     "default_icon": "icon.png"
   },
