@@ -1,4 +1,3 @@
-
 var tableHeaders = document.querySelectorAll('th');
 var sortAsc = true;
 var sortEnabled = true;
@@ -20,7 +19,7 @@ for (j = 0; j < tableHeaders.length; ++j) {
     nodeArray.sort(function(a, b) {
       a = a.querySelectorAll('td').item(index);
       b = b.querySelectorAll('td').item(index);
-      return a.innerHTML == b.innerHTML ? 0 : (a.innerHTML > b.innerHTML ? 1 : -1);
+      return sortAlphaNum(a.innerHTML,b.innerHTML);
     });
 
     if (!sortAsc) {
@@ -44,3 +43,22 @@ function findParentNode(parentName, childObj) {
   return testObj;
 }
 
+var reA = /[^a-zA-Z]/g;
+var reN = /[^0-9]/g;
+function sortAlphaNum(a,b) {
+    var aA = a.replace(reA, "");
+    var bA = b.replace(reA, "");
+    if(aA === bA) {
+        var aN = parseInt(a.replace(reN, ""), 10);
+        var bN = parseInt(b.replace(reN, ""), 10);
+        if (isNaN(aN)){
+          aN = 0;
+        }
+        if (isNaN(bN)){
+          bN = 0;
+        }
+        return aN === bN ? 0 : aN > bN ? 1 : -1;
+    } else {
+        return aA > bA ? 1 : -1;
+    }
+}
