@@ -19,7 +19,7 @@ for (j = 0; j < tableHeaders.length; ++j) {
     nodeArray.sort(function(a, b) {
       a = a.querySelectorAll('td').item(index);
       b = b.querySelectorAll('td').item(index);
-      return sortAlphaNum(a.innerHTML,b.innerHTML);
+      return sortAlphaNum(a.textContent,b.textContent);
     });
 
     if (!sortAsc) {
@@ -43,22 +43,17 @@ function findParentNode(parentName, childObj) {
   return testObj;
 }
 
-var reA = /[^a-zA-Z]/g;
-var reN = /[^0-9]/g;
+var reParts = /^([^0-9]*)([0-9]+(?:\.[0-9]+)?)([^0-9]*)$/;
 function sortAlphaNum(a,b) {
-    var aA = a.replace(reA, "");
-    var bA = b.replace(reA, "");
-    if(aA === bA) {
-        var aN = parseInt(a.replace(reN, ""), 10);
-        var bN = parseInt(b.replace(reN, ""), 10);
-        if (isNaN(aN)){
-          aN = 0;
-        }
-        if (isNaN(bN)){
-          bN = 0;
-        }
-        return aN === bN ? 0 : aN > bN ? 1 : -1;
-    } else {
-        return aA > bA ? 1 : -1;
+    function compare(a, b) {
+        return a == b ? 0 : a > b ? 1 : -1;
     }
+    var aParts = reParts.exec(a);
+    var bParts = reParts.exec(b);
+    if (aParts && bParts) {
+        return compare(aParts[1], bParts[1]) ||
+            compare(aParts[3], bParts[3]) ||
+            compare(parseFloat(aParts[2]), parseFloat(bParts[2]));
+    }
+    return compare(a, b);
 }
