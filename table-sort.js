@@ -55,13 +55,13 @@ function findParentNode(parentName, childObj) {
 }
 
 var reA = /[^a-zA-Z]/g;
-var reN = /[^0-9]/g;
+var reN = /[^-.0-9]/g;
 function sortAlphaNum(a,b) {
     var aA = a.replace(reA, "");
     var bA = b.replace(reA, "");
     if(aA === bA) {
-        var aN = parseInt(a.replace(reN, ""), 10);
-        var bN = parseInt(b.replace(reN, ""), 10);
+        var aN = parseFloat(a.replace(reN, ""));
+        var bN = parseFloat(b.replace(reN, ""));
         if (isNaN(aN)){
           aN = 0;
         }
