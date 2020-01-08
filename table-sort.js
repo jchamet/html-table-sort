@@ -32,8 +32,13 @@ for (j = 0; j < tableHeaders.length; ++j) {
 
     chrome.storage.local.get('sortEnabled', function (result) {
       if (result.sortEnabled) {
+        let appendingBody = tableObj;
+        let tbody = [...tableObj.querySelectorAll("TBODY")];
+        if (tbody.length) {
+          appendingBody = tbody[0];
+        }
         for (i = 0; i < nodeArray.length; ++i) {
-          tableObj.appendChild(nodeArray[i]);
+          appendingBody.appendChild(nodeArray[i]);
         }
       }
     });
@@ -41,14 +46,14 @@ for (j = 0; j < tableHeaders.length; ++j) {
 }
 
 function stableSort(arr, compare) {
-    var original = arr.slice(0);
+  var original = arr.slice(0);
 
-    arr.sort(function(a, b){
-        var result = compare(a, b);
-        return result === 0 ? original.indexOf(a) - original.indexOf(b) : result;
-    });
+  arr.sort(function(a, b){
+    var result = compare(a, b);
+    return result === 0 ? original.indexOf(a) - original.indexOf(b) : result;
+  });
 
-    return arr;
+  return arr;
 }
 
 function findParentNode(parentName, childObj) {
@@ -62,19 +67,19 @@ function findParentNode(parentName, childObj) {
 var reA = /[^a-zA-Z]/g;
 var reN = /[^-.0-9]/g;
 function sortAlphaNum(a,b) {
-    var aA = a.replace(reA, "");
-    var bA = b.replace(reA, "");
-    if(aA === bA) {
-        var aN = parseFloat(a.replace(reN, ""));
-        var bN = parseFloat(b.replace(reN, ""));
-        if (isNaN(aN)){
-          aN = 0;
-        }
-        if (isNaN(bN)){
-          bN = 0;
-        }
-        return aN === bN ? 0 : aN > bN ? 1 : -1;
-    } else {
-        return aA > bA ? 1 : -1;
+  var aA = a.replace(reA, "");
+  var bA = b.replace(reA, "");
+  if(aA === bA) {
+    var aN = parseFloat(a.replace(reN, ""));
+    var bN = parseFloat(b.replace(reN, ""));
+    if (isNaN(aN)){
+      aN = 0;
     }
+    if (isNaN(bN)){
+      bN = 0;
+    }
+    return aN === bN ? 0 : aN > bN ? 1 : -1;
+  } else {
+    return aA > bA ? 1 : -1;
+  }
 }
