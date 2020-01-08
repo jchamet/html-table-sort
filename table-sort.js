@@ -1,9 +1,14 @@
-var tableHeaders = document.querySelectorAll('th');
-var sortAsc = Array(tableHeaders.length);
-sortAsc.fill(1);
-
+const tableHeaders = Array.from(document.querySelectorAll('TABLE'), table => {
+  let THs = table.querySelectorAll("TH");
+  if (THs.length) return [...THs]
+  let TRs = table.querySelectorAll("TR");
+  if (TRs.length > 5) {
+    return [...TRs[0].querySelectorAll("TD")]
+  }
+}).filter(Boolean).flat(Infinity);
+var sortAsc = Array(tableHeaders.length).fill(1);
 for (j = 0; j < tableHeaders.length; ++j) {
-  tableHeaders.item(j).onclick = function() {
+  tableHeaders[j].onclick = function() {
 
     var tableObj = findParentNode('TABLE',this);
     var index = [].indexOf.call(this.parentNode.children, this);
