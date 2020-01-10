@@ -4,9 +4,10 @@
 
 Once added to your browser, clicking on a table column header &lt;th> will reorder the rows of an HTML table in ascending or descending order.
 
-## New in version 1.6
+## New in version 1.7
 
-- Small changes to support correct sorting of floating-point numbers, including negative values.
+- Support tables without headers
+- Add table cells to the tbody instead of the table
 
 # Contributing
 

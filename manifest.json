@@ -4,7 +4,7 @@
     "32": "icon.png",
     "128":  "icon-large.png"
   },
-  "version": "1.6",
+  "version": "1.7",
   "manifest_version": 2,
   "description": "Clicking on <th> tags reorders rows of an HTML table in ascending/descending order.",
   "browser_action": {
